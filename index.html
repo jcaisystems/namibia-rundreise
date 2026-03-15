@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="de">
 
 <head>
@@ -7,6 +7,8 @@
     <title>Namibia Rundreisen â€“ Massgeschneiderte Safaris aus der Schweiz</title>
     <meta name="description"
         content="Self-Drive Safaris, gefÃ¼hrte Touren und exklusive Lodges â€“ perfekt geplant von Schweizer Namibia-Experten mit Ã¼ber 15 Jahren Erfahrung vor Ort.">
+    <link rel="icon" type="image/x-icon" href="favicon-32x32.ico">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap');
 
@@ -366,18 +368,20 @@
             background-color: var(--clr-dusk);
             padding: 0;
             overflow: hidden;
+            width: 100%;
         }
 
         #ghl-custom-wrapper .film-track {
             display: flex;
-            justify-content: center;
+            width: max-content;
             gap: 4px;
             height: 280px;
+            animation: scroll-left 40s linear infinite;
         }
 
         #ghl-custom-wrapper .film-track img {
             flex: 0 0 auto;
-            width: 380px;
+            width: auto;
             height: 100%;
             object-fit: cover;
             filter: sepia(0.2) brightness(0.9);
@@ -388,6 +392,16 @@
             filter: sepia(0) brightness(1.05);
             transform: scale(1.02);
             z-index: 1;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(calc(-50% - 2px));
+            }
         }
 
         /* ─── JOURNEY / TEXTURE SPLIT ────────────────────────── */
@@ -469,7 +483,7 @@
         /* ─── DESTINATIONS MOSAIC ────────────────────────────── */
         #ghl-custom-wrapper .nrc-mosaic {
             background-color: var(--clr-night);
-            padding: 120px 0;
+            padding: 120px 0 0 0;
         }
 
         #ghl-custom-wrapper .mosaic-header {
@@ -518,6 +532,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
@@ -680,7 +695,7 @@
         #ghl-custom-wrapper .atmosphere-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(28, 25, 23, 0.3) 0%, rgba(28, 25, 23, 0.7) 100%);
+            background: linear-gradient(to bottom, rgba(28, 25, 23, 0.1) 0%, rgba(28, 25, 23, 0.4) 100%);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -712,8 +727,8 @@
 
         /* ─── DUAL IMAGE + TEXT ROW ────────────────────────────── */
         #ghl-custom-wrapper .nrc-dual {
-            background-color: var(--clr-bone);
-            padding: 120px 0;
+            background-color: var(--clr-night);
+            padding: 0 0 120px 0;
         }
 
         #ghl-custom-wrapper .dual-grid {
@@ -1005,6 +1020,182 @@
             background-color: var(--clr-horizon);
         }
 
+        /* ─── GALLERY & LIGHTBOX ───────────────────────────────── */
+        #ghl-custom-wrapper .gallery-section {
+            padding: 80px 0 100px 0;
+            background: var(--clr-night);
+            /* Match the dark theme */
+        }
+
+        /* Lightbox Styles */
+        #ghl-custom-wrapper .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #ghl-custom-wrapper .lightbox.active {
+            display: flex;
+        }
+
+        #ghl-custom-wrapper .lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 4px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            object-fit: contain;
+        }
+
+        #ghl-custom-wrapper .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: #fff;
+            font-size: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10001;
+            font-family: Arial, sans-serif;
+            line-height: 1;
+        }
+
+        #ghl-custom-wrapper .lightbox-close:hover {
+            transform: scale(1.1);
+            color: var(--clr-sun);
+        }
+
+        #ghl-custom-wrapper .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10002;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        #ghl-custom-wrapper .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #fff;
+        }
+
+        #ghl-custom-wrapper .lightbox-nav i {
+            font-size: 24px;
+        }
+
+        #ghl-custom-wrapper .lightbox-nav.prev {
+            left: 30px;
+        }
+
+        #ghl-custom-wrapper .lightbox-nav.next {
+            right: 30px;
+        }
+
+        /* Horizontal Carousel Styles */
+        #ghl-custom-wrapper .carousel-wrapper {
+            position: relative;
+            margin: 40px -20px 0 -20px;
+            padding: 0 40px;
+        }
+
+        #ghl-custom-wrapper .carousel-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 10px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #ghl-custom-wrapper .carousel-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        #ghl-custom-wrapper .carousel-item {
+            flex: 0 0 300px;
+            height: 220px;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            scroll-snap-align: start;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        #ghl-custom-wrapper .carousel-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        #ghl-custom-wrapper .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        #ghl-custom-wrapper .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            z-index: 10;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            color: var(--clr-night);
+        }
+
+        #ghl-custom-wrapper .carousel-btn:hover {
+            background: var(--clr-earth);
+            color: #fff;
+            transform: translateY(-50%) scale(1.15);
+            box-shadow: 0 8px 30px rgba(140, 83, 62, 0.4);
+        }
+
+        #ghl-custom-wrapper .carousel-btn.prev {
+            left: 0;
+        }
+
+        #ghl-custom-wrapper .carousel-btn.next {
+            right: 0;
+        }
+
+        #ghl-custom-wrapper .carousel-btn i {
+            font-size: 20px;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         /* ─── RESPONSIVE ───────────────────────────────────────── */
 
         /* ── Tablet (≤1024px) ─────────────────── */
@@ -1012,8 +1203,8 @@
 
             /* Hero: image goes full-bleed behind, content sits at bottom */
             #ghl-custom-wrapper .nrc-hero {
-                min-height: 80vh;
-                align-items: flex-end;
+                min-height: 100svh;
+                align-items: center;
                 padding-bottom: 60px;
             }
 
@@ -1083,13 +1274,31 @@
                 height: 200px;
             }
 
-            #ghl-custom-wrapper .film-track img {
-                width: 250px;
-            }
-
             #ghl-custom-wrapper .nrc-atmosphere {
                 min-height: 400px;
                 height: auto;
+            }
+
+            /* Gallery responsive */
+            #ghl-custom-wrapper .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            #ghl-custom-wrapper .lightbox-nav {
+                width: 45px;
+                height: 45px;
+            }
+
+            #ghl-custom-wrapper .lightbox-nav i {
+                font-size: 18px;
+            }
+
+            #ghl-custom-wrapper .lightbox-nav.prev {
+                left: 15px;
+            }
+
+            #ghl-custom-wrapper .lightbox-nav.next {
+                right: 15px;
             }
         }
 
@@ -1099,8 +1308,8 @@
             /* Hero */
             #ghl-custom-wrapper .nrc-hero {
                 min-height: 100svh;
-                padding-top: 80px;
-                padding-bottom: 50px;
+                padding-top: 40px;
+                padding-bottom: 40px;
             }
 
             #ghl-custom-wrapper .hero-content h1 {
@@ -1194,14 +1403,30 @@
                 height: 150px;
             }
 
-            #ghl-custom-wrapper .film-track img {
-                width: 180px;
-            }
-
             /* Atmosphere: use min-height, not fixed vh */
             #ghl-custom-wrapper .nrc-atmosphere {
                 min-height: 320px;
                 height: auto;
+            }
+
+            /* Gallery responsive */
+            #ghl-custom-wrapper .carousel-wrapper {
+                margin: 30px -10px 0 -10px;
+                padding: 0 35px;
+            }
+
+            #ghl-custom-wrapper .carousel-item {
+                flex: 0 0 260px;
+                height: 180px;
+            }
+
+            #ghl-custom-wrapper .carousel-btn {
+                width: 40px;
+                height: 40px;
+            }
+
+            #ghl-custom-wrapper .carousel-btn i {
+                font-size: 16px;
             }
 
             #ghl-custom-wrapper .atmosphere-quote blockquote {
@@ -1255,10 +1480,7 @@
 
             #ghl-custom-wrapper .film-track {
                 height: 120px;
-            }
-
-            #ghl-custom-wrapper .film-track img {
-                width: 140px;
+                animation-duration: 35s;
             }
         }
     </style>
@@ -1304,12 +1526,22 @@
 
                 </div>
             </div>
-            <div class="hero-scroll-strip"></div>
         </header>
 
         <!-- ══ FILM STRIP / PHOTO PARADE ══════════════════════════ -->
         <div class="nrc-film-strip">
             <div class="film-track">
+                <img src="images/img-01.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-02.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-05.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-06.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-07.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-08.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-09.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-17.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-18.jpeg" alt="Namibia Impressionen">
+                <img src="images/img-19.jpeg" alt="Namibia Impressionen">
+                <!-- Duplicate for seamless loop -->
                 <img src="images/img-01.jpeg" alt="Namibia Impressionen">
                 <img src="images/img-02.jpeg" alt="Namibia Impressionen">
                 <img src="images/img-05.jpeg" alt="Namibia Impressionen">
@@ -1382,7 +1614,7 @@
                         </ul>
                     </div>
                     <div class="organic-border">
-                        <img src="images/img-03.jpeg" alt="Elefanten im Etosha Nationalpark – Namibia">
+                        <img src="images/img-08.jpeg" alt="Elefanten im Etosha Nationalpark – Namibia">
                     </div>
                 </div>
             </div>
@@ -1390,7 +1622,7 @@
 
         <!-- ══ FULL-BLEED ATMOSPHERE ══════════════════════════════ -->
         <div class="nrc-atmosphere">
-            <img src="images/img-10.jpeg" alt="Namibia Sonnenuntergang über der Namib">
+            <img src="images/img-22.jpeg" alt="Namibia Sonnenuntergang über der Namib">
             <div class="atmosphere-overlay">
                 <div class="atmosphere-quote">
                     <blockquote>„Namibia ist der einzige Ort, wo die Stille laut genug ist, um sie zu hören."
@@ -1405,36 +1637,36 @@
             <div class="nrc-container">
                 <div class="mosaic-header">
                     <span>Die Route</span>
-                    <h2>Namibias unvergessliche Höhepunkte</h2>
+                    <h2>Namibias unvergessliche Momente</h2>
                 </div>
             </div>
             <div class="mosaic-grid">
                 <div class="mosaic-cell tall">
-                    <img src="images/img-11.jpeg" alt="Sossusvlei Dünen">
+                    <img src="images/P1077829-1024x683.webp" alt="Sossusvlei Dünen">
                     <div class="mosaic-overlay">
                         <h3>Sossusvlei</h3>
-                        <p>Die roten Dünen der Erde</p>
+                        <p>Die magischen Dünen</p>
                     </div>
                 </div>
                 <div class="mosaic-cell">
-                    <img src="images/img-12.jpeg" alt="Etosha Nationalpark">
+                    <img src="images/Zebras_etoscha.jpg" alt="Etosha Nationalpark">
                     <div class="mosaic-overlay">
                         <h3>Etosha N.P.</h3>
-                        <p>Big Five & mehr</p>
+                        <p>Wilde Begegnungen</p>
                     </div>
                 </div>
                 <div class="mosaic-cell">
-                    <img src="images/img-13.jpeg" alt="Skeleton Coast">
+                    <img src="images/1 Christuskirche_Independence Museum gallery.jpg" alt="Windhoek">
                     <div class="mosaic-overlay">
-                        <h3>Skeleton Coast</h3>
-                        <p>Ozean trifft Wüste</p>
+                        <h3>Windhoek</h3>
+                        <p>Herz von Namibia</p>
                     </div>
                 </div>
                 <div class="mosaic-cell wide">
-                    <img src="images/img-14.jpeg" alt="Fish River Canyon">
+                    <img src="images/Mole,_Jetty_and_Lighthouse_Swakopmund,_Namibia.jpg" alt="Swakopmund">
                     <div class="mosaic-overlay">
-                        <h3>Fish River Canyon</h3>
-                        <p>Größter Canyon Afrikas</p>
+                        <h3>Swakopmund</h3>
+                        <p>Küste trifft Wüste</p>
                     </div>
                 </div>
             </div>
@@ -1457,14 +1689,15 @@
                 </div>
             </div>
             <div class="dual-grid">
-                <div class="dual-text" style="background-color: #EFEBE4; padding: 5rem;">
-                    <h2 style="color: var(--clr-night);">Self-Drive oder geführte Tour?</h2>
-                    <p style="color: #5A5A5A;">Du entscheidest. Wir planen beide Varianten mit der gleichen Sorgfalt –
+                <div class="dual-text" style="background-color: var(--clr-night); padding: 5rem;">
+                    <h2 style="color: var(--clr-bone);">Self-Drive oder geführte Tour?</h2>
+                    <p style="color: var(--clr-sand);">Du entscheidest. Wir planen beide Varianten mit der gleichen
+                        Sorgfalt –
                         inklusive GPS-Tracks, detailliertem Roadbook und 24/7 Unterstützung von unserem Team in der
                         Schweiz
                         und vor Ort in Namibia.</p>
                     <a href="#anfragen" class="btn-safari"
-                        style="background-color: var(--clr-night); border-color: var(--clr-night);">Route besprechen</a>
+                        style="background-color: var(--clr-earth); border-color: var(--clr-earth);">Route besprechen</a>
                 </div>
                 <div class="dual-img">
                     <img src="images/img-17.jpeg" alt="Self-Drive 4x4 Namibia – Abenteuer auf Schotterpisten">
@@ -1476,7 +1709,7 @@
         <section class="nrc-route">
             <div class="route-grid">
                 <div class="route-stop">
-                    <img src="images/img-18.jpeg" alt="Windhoek Namibia">
+                    <img src="images/shutterstock_1131932207.jpg" alt="Windhoek Namibia">
                     <div class="route-stop-label">
                         <div class="route-stop-num">01</div>
                         <div class="route-stop-name">Windhoek</div>
@@ -1484,7 +1717,7 @@
                     </div>
                 </div>
                 <div class="route-stop">
-                    <img src="images/img-19.jpeg" alt="Namib Naukluft Wüste">
+                    <img src="images/NAM_2015_1SLA_Sossusvlei_02.jpg" alt="Namib Naukluft Wüste">
                     <div class="route-stop-label">
                         <div class="route-stop-num">02</div>
                         <div class="route-stop-name">Namib-Naukluft</div>
@@ -1492,7 +1725,7 @@
                     </div>
                 </div>
                 <div class="route-stop">
-                    <img src="images/img-20.jpeg" alt="Etosha Pan Wildlife">
+                    <img src="images/Waterhole_(3688066664).jpg" alt="Etosha Pan Wildlife">
                     <div class="route-stop-label">
                         <div class="route-stop-num">03</div>
                         <div class="route-stop-name">Etosha</div>
@@ -1500,7 +1733,7 @@
                     </div>
                 </div>
                 <div class="route-stop">
-                    <img src="images/img-21.jpeg" alt="Damaraland Felszeichnungen">
+                    <img src="images/1665667931-3Damaraland.png" alt="Damaraland Felszeichnungen">
                     <div class="route-stop-label">
                         <div class="route-stop-num">04</div>
                         <div class="route-stop-name">Damaraland</div>
@@ -1578,17 +1811,49 @@
             </div>
         </section>
 
-        <!-- ══ SECOND FILM STRIP ══════════════════════════════════ -->
-        <div class="nrc-film-strip">
-            <div class="film-track" style="flex-direction: row-reverse;">
-                <img src="images/img-22.jpeg" alt="Namibia Natur">
-                <img src="images/img-23.jpeg" alt="Namibia Natur">
-                <img src="images/img-24.jpeg" alt="Namibia Natur">
-                <img src="images/img-25.jpeg" alt="Namibia Natur">
-                <img src="images/img-26.jpeg" alt="Namibia Natur">
-                <img src="images/img-27.jpeg" alt="Namibia Natur">
-                <img src="images/img-28.jpeg" alt="Namibia Natur">
+        <!-- ══ IMAGE GALLERY (CAROUSEL) ══════════════════════════════════ -->
+        <section class="gallery-section">
+            <div class="nrc-container">
+                <div class="carousel-wrapper">
+                    <button class="carousel-btn prev" onclick="scrollCarousel(-1)"><i
+                            class="fa-solid fa-chevron-left"></i></button>
+                    <div class="carousel-container" id="lodgeCarousel">
+                        <div class="carousel-item" onclick="openLightbox('images/img-22.jpeg')">
+                            <img src="images/img-22.jpeg" alt="Namibia Natur 1">
+                        </div>
+                        <div class="carousel-item" onclick="openLightbox('images/img-21.jpeg')">
+                            <img src="images/img-21.jpeg" alt="Namibia Natur 2">
+                        </div>
+                        <div class="carousel-item" onclick="openLightbox('images/img-24.jpeg')">
+                            <img src="images/img-24.jpeg" alt="Namibia Natur 3">
+                        </div>
+                        <div class="carousel-item" onclick="openLightbox('images/img-25.jpeg')">
+                            <img src="images/img-25.jpeg" alt="Namibia Natur 4">
+                        </div>
+                        <div class="carousel-item" onclick="openLightbox('images/img-26.jpeg')">
+                            <img src="images/img-26.jpeg" alt="Namibia Natur 5">
+                        </div>
+                        <div class="carousel-item" onclick="openLightbox('images/img-27.jpeg')">
+                            <img src="images/img-27.jpeg" alt="Namibia Natur 6">
+                        </div>
+                        <div class="carousel-item" onclick="openLightbox('images/img-28.jpeg')">
+                            <img src="images/img-28.jpeg" alt="Namibia Natur 7">
+                        </div>
+                    </div>
+                    <button class="carousel-btn next" onclick="scrollCarousel(1)"><i
+                            class="fa-solid fa-chevron-right"></i></button>
+                </div>
             </div>
+        </section>
+
+        <!-- Lightbox Container -->
+        <div class="lightbox" id="lightbox" onclick="handleLightboxClick(event)">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <button class="lightbox-nav prev" onclick="prevLodgeImage(event)"><i
+                    class="fa-solid fa-chevron-left"></i></button>
+            <img id="lightbox-img" src="" alt="Gallery Image">
+            <button class="lightbox-nav next" onclick="nextLodgeImage(event)"><i
+                    class="fa-solid fa-chevron-right"></i></button>
         </div>
 
         <!-- ══ SECOND FULL-BLEED ATMOSPHERE ══════════════════════ -->
@@ -1623,7 +1888,7 @@
                             <img src="images/img-04.jpeg" alt="Namibia Reisebüro Partner">
                             <div>
                                 <span
-                                    style="display:block; margin-bottom: 4px; color: var(--clr-bone);">namibia-reise.ch</span>
+                                    style="display:block; margin-bottom: 4px; color: var(--clr-bone);">Namibia-rundreisen.ch</span>
                                 Dein direkter Ansprechpartner
                             </div>
                         </div>
@@ -1694,11 +1959,121 @@
                 <img src="images/img-26.jpeg" alt="Namibia Abschluss">
                 <img src="images/img-25.jpeg" alt="Namibia Abschluss">
                 <img src="images/img-24.jpeg" alt="Namibia Abschluss">
+                <!-- Duplicate for seamless loop -->
+                <img src="images/img-30.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-31.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-29.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-28.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-27.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-26.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-25.jpeg" alt="Namibia Abschluss">
+                <img src="images/img-24.jpeg" alt="Namibia Abschluss">
             </div>
         </div>
 
     </div>
     <script>
+        // Lightbox Functions
+        function openLightbox(imgSrc) {
+            // Find index of image
+            currentLodgeIndex = lodgeImages.indexOf(imgSrc);
+            if (currentLodgeIndex === -1) currentLodgeIndex = 0; // Fallback
+
+            var lightbox = document.getElementById('lightbox');
+            var lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function handleLightboxClick(e) {
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        }
+
+        function prevLodgeImage(e) {
+            if (e) e.stopPropagation();
+            currentLodgeIndex = (currentLodgeIndex - 1 + lodgeImages.length) % lodgeImages.length;
+            document.getElementById('lightbox-img').src = lodgeImages[currentLodgeIndex];
+        }
+
+        function nextLodgeImage(e) {
+            if (e) e.stopPropagation();
+            currentLodgeIndex = (currentLodgeIndex + 1) % lodgeImages.length;
+            document.getElementById('lightbox-img').src = lodgeImages[currentLodgeIndex];
+        }
+
+        function closeLightbox() {
+            var lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Lodge Gallery Images Array
+        var lodgeImages = [
+            'images/img-22.jpeg',
+            'images/img-21.jpeg',
+            'images/img-24.jpeg',
+            'images/img-25.jpeg',
+            'images/img-26.jpeg',
+            'images/img-27.jpeg',
+            'images/img-28.jpeg'
+        ];
+        var currentLodgeIndex = 0;
+
+        // Preload Lodge Images
+        lodgeImages.forEach(function (url) { (new Image()).src = url; });
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowLeft') prevLodgeImage(e);
+                if (e.key === 'ArrowRight') nextLodgeImage(e);
+            }
+        });
+
+        // Carousel Scroll Function (Robust: Debounced + Looping)
+        var isScrolling = false;
+
+        function scrollCarousel(direction) {
+            if (isScrolling) return; // Prevent rapid clicking
+
+            var carousel = document.getElementById('lodgeCarousel');
+            var item = carousel.querySelector('.carousel-item');
+            var scrollAmount = item ? item.offsetWidth + 20 : 320; // Width + gap
+            var maxScroll = carousel.scrollWidth - carousel.clientWidth;
+
+            var targetScroll;
+
+            // Looping Logic
+            if (direction === -1 && carousel.scrollLeft <= 10) {
+                // If at start and going left -> Scroll to end
+                targetScroll = maxScroll;
+            } else if (direction === 1 && carousel.scrollLeft >= (maxScroll - 10)) {
+                // If at end and going right -> Scroll to start
+                targetScroll = 0;
+            } else {
+                // Normal scroll
+                targetScroll = carousel.scrollLeft + (direction * scrollAmount);
+            }
+
+            // Lock interaction
+            isScrolling = true;
+            carousel.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+            });
+
+            // Unlock faster for better UX
+            setTimeout(function () {
+                isScrolling = false;
+            }, 500);
+        }
+
         document.getElementById('contact-form').addEventListener('submit', async function (e) {
             e.preventDefault();
 
