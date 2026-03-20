@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://namibia-rundreisen.ch/sitemap.xml
+Sitemap: https://namibia-rundreise.ch/sitemap.xml
